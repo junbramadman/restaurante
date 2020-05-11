@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    color: black !important;
+}
+
+.item-carusel {
+    width: 100% !important;
+    height: 400px !important;
+}
+
+.imagen-carusel {
+    height: 100% !important;
+    width: 100% !important;
+}

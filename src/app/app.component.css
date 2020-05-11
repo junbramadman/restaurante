@@ -1,0 +1,19 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    color: black !important;
+}
+
+.item-carusel {
+    display: block;
+    width: 100% !important;
+    height: 200px !important;
+}
+
+.imagen-carusel {
+    height: 50vh !important;
+    width: 10% !important;
+}

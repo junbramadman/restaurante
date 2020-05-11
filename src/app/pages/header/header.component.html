@@ -1,0 +1,26 @@
+<header class="ae-container-fluid ae-container-fluid--full rk-header ">
+    <div class="ae-container-fluid rk-topbar">
+        <h1 class="rk-logo"><a data-toggle="modal" data-target="#exampleModal" *ngIf="!isAutenticado()">Barriguita Llena Corazon Contento</a></h1>
+        <nav class="rk-navigation">
+            <ul class="rk-menu">
+                <li class="rk-menu__item">
+                    <a routerLink="../inicio" class="rk-menu__link">Inicio</a>
+                </li>
+                <li class="rk-menu__item">
+                    <a routerLink="../nosotros" class="rk-menu__link">Sobre nosotros</a>
+                </li>
+                <li class="active rk-menu__item">
+                    <a routerLink="../productos" class="rk-menu__link">Productos</a>
+                </li>
+                <li class="rk-menu__item">
+                    <a routerLink="../contacto" class="rk-menu__link">Contacto</a>
+                </li>
+                <li *ngIf="isAutenticado()" class="rk-menu__item">
+                    <a class="rk-menu__link" (click)="salir()">Cerrar sesion</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</header>
+<app-login></app-login>
