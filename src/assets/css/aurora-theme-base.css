@@ -5,61 +5,65 @@
  https://github.com/aurora-kit/aurora-themes.git 
  Licensed under  MIT 
 \* * * * * * * * * * * * * * * * * * * * */
+
 @font-face {
-  font-family: "Aileron";
-  font-style: normal;
-  font-weight: 400;
-  src: url("fonts/aurora-theme-base-fonts/aileron-regular.woff2") format("woff2"), url("fonts/aurora-theme-base-fonts/aileron-regular.woff") format("woff");
+    font-family: "Aileron";
+    font-style: normal;
+    font-weight: 400;
+    src: url("fonts/aurora-theme-base-fonts/aileron-regular.woff2") format("woff2"), url("fonts/aurora-theme-base-fonts/aileron-regular.woff") format("woff");
 }
 
 @font-face {
-  font-family: "Aileron";
-  font-style: normal;
-  font-weight: 500;
-  src: url("fonts/aurora-theme-base-fonts/aileron-semibold.woff2") format("woff2"), url("fonts/aurora-theme-base-fonts/aileron-semibold.woff") format("woff");
+    font-family: "Aileron";
+    font-style: normal;
+    font-weight: 500;
+    src: url("fonts/aurora-theme-base-fonts/aileron-semibold.woff2") format("woff2"), url("fonts/aurora-theme-base-fonts/aileron-semibold.woff") format("woff");
 }
 
 @font-face {
-  font-family: "Aileron";
-  font-style: normal;
-  font-weight: 700;
-  src: url("fonts/aurora-theme-base-fonts/aileron-bold.woff2") format("woff2"), url("fonts/aurora-theme-base-fonts/aileron-bold.woff") format("woff");
+    font-family: "Aileron";
+    font-style: normal;
+    font-weight: 700;
+    src: url("fonts/aurora-theme-base-fonts/aileron-bold.woff2") format("woff2"), url("fonts/aurora-theme-base-fonts/aileron-bold.woff") format("woff");
 }
 
 @font-face {
-  font-family: "Aileron";
-  font-style: normal;
-  font-weight: 900;
-  src: url("fonts/aurora-theme-base-fonts/aileron-black.woff2") format("woff2"), url("fonts/aurora-theme-base-fonts/aileron-black.woff") format("woff");
+    font-family: "Aileron";
+    font-style: normal;
+    font-weight: 900;
+    src: url("fonts/aurora-theme-base-fonts/aileron-black.woff2") format("woff2"), url("fonts/aurora-theme-base-fonts/aileron-black.woff") format("woff");
 }
 
 body {
-  line-height: 1.556;
-  font-family: "Aileron", Helvetica, Arial, sans-serif;
+    line-height: 1.556;
+    font-family: "Aileron", Helvetica, Arial, sans-serif;
 }
 
 a,
 button {
-  color: inherit;
-  -webkit-transition: color .3s;
-          transition: color .3s;
+    color: inherit;
+    -webkit-transition: color .3s;
+    transition: color .3s;
 }
+
 a:hover,
 button:hover {
-  color: #a0a0a0;
+    color: #a0a0a0;
 }
+
 a:not(.au-underline),
 button:not(.au-underline) {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 blockquote {
-  border-left: 0;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  padding-left: 0;
+    border-left: 0;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    padding-left: 0;
 }
+
 blockquote footer {
-  font-family: "Aileron", Helvetica, Arial, sans-serif;
+    font-family: "Aileron", Helvetica, Arial, sans-serif;
 }
 
 input[type="text"],
@@ -76,13 +80,14 @@ input[type="time"],
 input[type="url"],
 input[type="week"],
 textarea {
-  background: #f6f6f6;
-  border: 0;
-  font-size: inherit;
-  letter-spacing: .04em;
-  margin-bottom: .5rem;
-  padding: 2.2rem 3rem;
+    background: #f6f6f6;
+    border: 0;
+    font-size: inherit;
+    letter-spacing: .04em;
+    margin-bottom: .5rem;
+    padding: 2.2rem 3rem;
 }
+
 input[type="text"]:focus,
 input[type="date"]:focus,
 input[type="datetime"]:focus,
@@ -97,29 +102,30 @@ input[type="time"]:focus,
 input[type="url"]:focus,
 input[type="week"]:focus,
 textarea:focus {
-  outline: 0;
+    outline: 0;
 }
 
 button {
-  cursor: pointer;
+    cursor: pointer;
 }
+
 button:focus {
-  outline: 0;
+    outline: 0;
 }
 
 p {
-  margin-bottom: 1.556rem;
+    margin-bottom: 1.556rem;
 }
 
 h4 {
-  margin-bottom: 2.2rem;
+    margin-bottom: 2.2rem;
 }
 
 pre {
-  margin-bottom: .5rem;
+    margin-bottom: .5rem;
 }
 
 p.ae-eta {
-  line-height: 1.3749;
-  margin-bottom: 2rem;
+    line-height: 1.3749;
+    margin-bottom: 2rem;
 }

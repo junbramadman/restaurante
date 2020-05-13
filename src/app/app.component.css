@@ -17,3 +17,8 @@ a {
     height: 50vh !important;
     width: 10% !important;
 }
+
+.form-admin {
+    size: 0px !important;
+    width: 10px !important;
+}

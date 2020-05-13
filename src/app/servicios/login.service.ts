@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Usuario } from '../modelo/usuario';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +9,15 @@ import * as firebase from 'firebase';
 export class LoginService {
   token: string;
 
+  constructor(private router: Router){}
+
   login(email: string, password: string){
     firebase.auth().signInWithEmailAndPassword(email, password).
     then(reponse => {
       firebase.auth().currentUser.getIdToken().then(
         token => {
           this.token = token;
-          alert('logueado correctamente');
+          this.router.navigate(['/']);
         }
       );
     });

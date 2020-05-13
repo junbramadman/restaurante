@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <form class="form-admin">
+                <h4>Agregar o Editar productos</h4><br>
+                <input type="hidden" name="$idRegistro">
+                <input class="form-control form-control-sm" type="text" placeholder="titulo" name="$titulo">
+                <input class="form-control form-control-sm" type="text" placeholder="descripcion" name="descripcion">
+                <input class="form-control form-control-sm" type="number" placeholder="precio">
+                <button class="btn btn-primary" type="submit">Agregar</button>
+            </form>
+            <!-- <form class="form-admin" #productoForm="ngForm">
+                <h4>Agregar o Editar productos</h4><br>
+                <input type="hidden" name="$idRegistro" #idRegistro="ngModel" [(ngModel)]="productoService.selectedProducto.$idRegistro">
+                <input class="form-control form-control-sm" type="text" placeholder="titulo" name="$titulo" #titulo="ngModel" [(ngModel)]="productoService.selectedProducto.titulo">
+                <input class="form-control form-control-sm" type="text" placeholder="descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="productoService.selectedProducto.descripcion">
+                <input class="form-control form-control-sm" type="number" placeholder="precio">
+                <button class="btn btn-primary" type="submit" (click)="crearProducto(productoForm)">Agregar</button>
+            </form> -->
+        </div>
+        <div class="col-8">
+            <h4>Productos subidos</h4>
+            <div class="row">
+                <div class="col-3">
+                    <h5>Titulo</h5>
+                </div>
+                <div class="col-4">
+                    <h5>Descripcion</h5>
+                </div>
+                <div class="col-2">
+                    <h5>Precio</h5>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-warning">Editar</button>
+                    <button class="btn btn-danger">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 //firebase
-import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import * as firebase from 'firebase';
 
@@ -18,6 +18,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { environment } from '../environments/environment';
 import { LoginService } from './servicios/login.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminProductosComponent } from './pages/admin-productos/admin-productos.component';
 
 
 const configfire = {
@@ -42,6 +43,7 @@ firebase.initializeApp(configfire);
     ContactoComponent,
     NosotrosComponent,
     LoginComponent,
+    AdminProductosComponent,
   ],
   imports: [
     BrowserModule,
