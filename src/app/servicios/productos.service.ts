@@ -14,18 +14,11 @@ export class ProductosService {
   }
 
   agregarProducto(producto: Productos){
-    let confirmacion= false;
     if (this.producto == null){
           this.producto = [];
       }
     this.producto.push(producto);
-    confirmacion = this.dataService.guardarProducto(this.producto);
-    console.log(confirmacion);
-    if (confirmacion === true){
-
-    }
-
-
+    this.dataService.guardarProducto(this.producto);
   }
 
 

@@ -5,7 +5,7 @@
                 <h4>Subir o editar productos</h4><br>
                 <div *ngIf="btnAgregar; then agregar else editar"></div>
                 <ng-template #agregar>
-                    <form class="item" #formularioAgregar="ngForm" (ngSubmit)="formularioAgregar.form.valid && onGuardarProducto() ; formularioEditar.reset()">
+                    <form class="item" #formularioAgregar="ngForm" (ngSubmit)="formularioAgregar.form.valid && onGuardarProducto() ; formularioAgregar.reset()">
                         <input type="text" name="titulo" placeholder="Titulo" [(ngModel)]="tituloInput" required/>
                         <textarea name="descripcion" placeholder="Descripcion" [(ngModel)]="descripcionInput" required cols="18" style="margin-bottom: 15px;">
                         </textarea>
