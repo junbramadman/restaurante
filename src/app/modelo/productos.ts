@@ -1,6 +1,7 @@
 export class Productos {
-    $idRegistro: string;
-    titulo: string;
-    descripcion: string;
-    precio: number;
+    constructor(public titulo: string, public descripcion: string, public precio: number){}
+
+    toString(): string{
+        return this.titulo + ' ' + this.descripcion + ' ' + this.precio;
+    }
 }

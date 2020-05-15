@@ -1,49 +1,60 @@
 import { Injectable } from '@angular/core';
-import * as firebase from 'firebase';
-import { Router } from '@angular/router';
 import { Productos } from '../modelo/productos';
-import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
+import { DataService } from './data.service';
 import Swal from 'sweetalert2';
 
-
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable()
 export class ProductosService {
+  producto: Productos[] = [];
 
-  // servicio para crear, editar y borrar productos
-  // aun en trabajo, varios errores
-  
-  
-  // selectedProducto: Productos = new Productos();
-  // listaProductos: AngularFireList<any>;
+  constructor(private dataService: DataService){}
+
+  setProducto(producto: Productos[]){
+    this.producto = producto;
+  }
+
+  agregarProducto(producto: Productos){
+    let confirmacion= false;
+    if (this.producto == null){
+          this.producto = [];
+      }
+    this.producto.push(producto);
+    confirmacion = this.dataService.guardarProducto(this.producto);
+    console.log(confirmacion);
+    if (confirmacion === true){
+
+    }
 
 
-  // constructor(private firebase = AngularFireDatabase) { }
-
-  // // getProductos(){
-  // //   return this.listaProductos = this.firebase.list('productos');
-  // // }
+  }
 
 
-  // insertProductos(producto: Productos){
-  //   this.listaProductos.push({
-  //     titulo: producto.titulo,
-  //     descripcion: producto.descripcion,
-  //     precio: producto.precio
-  //   });
-  // }
+  obtenerProductos(){
+    return this.dataService.cargarProductos();
+  }
 
-  // editarProducto(producto: Productos){
-  //   this.listaProductos.update(producto.$idRegistro, {
-  //     titulo: producto.titulo,
-  //     descripcion: producto.descripcion,
-  //     precio: producto.precio
-  //   });
-  // }
+  editarProducto(index: number, producto: Productos){
+    let producto1 = this.producto[index];
+    producto1.titulo = producto.titulo;
+    producto1.descripcion = producto.descripcion;
+    producto1.precio = producto.precio;
+    this.dataService.editarProducto(index, producto1);
 
-  // borrarProducto($idRegistro: string){
-  //   this.listaProductos.remove($idRegistro);
-  // }
+  }
+  actualizarTabla(){
+    if(this.producto != null) {
+      this.dataService.guardarAlEliminar(this.producto);
+    }
+  }
+
+  encontrarProducto(index: number){
+    let producto: Productos = this.producto[index];
+    return producto;
+  }
+
+  eliminarProducto(index:number){
+    this.producto.splice(index,1);
+    this.dataService.eliminarProducto(index);
+    this.actualizarTabla();
+  }
 }

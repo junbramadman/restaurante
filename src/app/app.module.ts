@@ -19,6 +19,9 @@ import { environment } from '../environments/environment';
 import { LoginService } from './servicios/login.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminProductosComponent } from './pages/admin-productos/admin-productos.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ProductosService } from './servicios/productos.service';
+import { DataService } from './servicios/data.service';
 
 
 const configfire = {
@@ -28,6 +31,8 @@ const configfire = {
   projectId: "restaurante-83087",
   storageBucket: "restaurante-83087.appspot.com",
   messagingSenderId: "846653633214",
+  appId: "1:846653633214:web:406e099f84b8c49839a4ef",
+  measurementId: "G-C6SMP0X2X4"
 };
 
 firebase.initializeApp(configfire);
@@ -49,10 +54,11 @@ firebase.initializeApp(configfire);
     BrowserModule,
     AppRoutingModule,
     AngularFireDatabaseModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
-    LoginService
+    LoginService, ProductosService, DataService
   ],
   bootstrap: [AppComponent]
 })
