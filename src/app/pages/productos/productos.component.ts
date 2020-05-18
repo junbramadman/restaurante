@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Productos } from 'src/app/modelo/productos';
 import { ProductosService } from '../../servicios/productos.service';
 import { CarritoService } from '../../servicios/carrito.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -13,7 +14,7 @@ export class ProductosComponent implements OnInit {
   cantidades = 0;
   contadorCarrito = 0;
   total = 0;
-  constructor(private productoService: ProductosService) { }
+  constructor(private productoService: ProductosService, private carritoService: CarritoService, private router: Router) { }
 
   ngOnInit(): void {
     this.productoService.obtenerProductos()
@@ -24,6 +25,7 @@ export class ProductosComponent implements OnInit {
       }
     );
     this.productoService.getUrl();
+    this.carritoService.numeroProductos = this.carrito;
   }
 
   agregarCarrito(index){
@@ -50,6 +52,10 @@ export class ProductosComponent implements OnInit {
     let elemento2 = document.getElementById('c'+ i);
     elemento1.hidden =true;
     elemento2.hidden =false; 
+  }
+
+  irCarrito(){
+    this.router.navigate(['compra']);
   }
 
 

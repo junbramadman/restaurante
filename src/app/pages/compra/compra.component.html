@@ -1,1 +1,30 @@
-<p>compra works!</p>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Subtotal</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="carrito != null">
+        <tr *ngFor="let producto of carrito">
+            <td>{{producto.titulo}}</td>
+            <td>{{producto.cantidad}}</td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.cantidad * producto.precio}}</td>
+        </tr>
+        <tr>
+            <td><b>Total</b></td>
+            <td></td>
+            <td></td>
+            <td>{{total}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><button class="btn btn-danger">Cancelar Compra</button> </td>
+            <td><button class="btn btn-success">Confirmar Compra</button></td>
+        </tr>
+    </tbody>
+</table>

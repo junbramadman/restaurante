@@ -5,11 +5,8 @@ import { Productos } from '../modelo/productos';
   providedIn: 'root'
 })
 export class CarritoService {
-  numeroProductos = 0;
+  numeroProductos = [];
+  total: number;
   constructor() { }
 
-  agregar(numero){
-    this.numeroProductos = this.numeroProductos + 1;
-    numero=this.numeroProductos;
-  }
 }
