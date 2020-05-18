@@ -23,6 +23,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductosService } from './servicios/productos.service';
 import { DataService } from './servicios/data.service';
 import { CompraComponent } from './pages/compra/compra.component';
+import { DespachoComponent } from './pages/despacho/despacho.component';
 
 
 const configfire = {
@@ -51,6 +52,7 @@ firebase.initializeApp(configfire);
     LoginComponent,
     AdminProductosComponent,
     CompraComponent,
+    DespachoComponent,
   ],
   imports: [
     BrowserModule,

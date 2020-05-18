@@ -121,4 +121,32 @@ export class DataService {
             );
     }
 
+    enviarPedido(pedido){
+      this.httpClient.put('https://restaurante-83087.firebaseio.com/pedidos.json', pedido)
+      .subscribe(
+          (response) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Pedido creado con exito, un agente nuestro se pondra en contacto',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          },
+          (error) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Erro al crear el producto con exito',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+      );
+    }
+
+    cargarPedidos(){
+      return this.httpClient.get('https://restaurante-83087.firebaseio.com/pedidos.json');
+    }
+
 }

@@ -6,12 +6,19 @@ import Swal from 'sweetalert2';
 @Injectable()
 export class ProductosService {
   producto: Productos[] = [];
+  pedido: any[] = [];
   url: string;
 
-  constructor(private dataService: DataService){}
+  constructor(private dataService: DataService){
+    this.dataService.cargarPedidos();
+  }
 
   setProducto(producto: Productos[]){
     this.producto = producto;
+  }
+
+  setPedido(pedido: any[]){
+    this.pedido = pedido;
   }
 
   agregarProducto(producto: Productos){
@@ -60,5 +67,16 @@ export class ProductosService {
     this.producto.splice(index,1);
     this.dataService.eliminarProducto(index);
     this.actualizarTabla();
+  }
+
+  obtenerPedidos(){
+    return this.dataService.cargarPedidos();
+  }
+  enviarPedido(pedido: any){
+    if (this.pedido == null){
+      this.pedido = [];
+    }
+    this.pedido.push(pedido);
+    this.dataService.enviarPedido(this.pedido);
   }
 }
