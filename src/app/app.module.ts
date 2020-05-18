@@ -22,6 +22,7 @@ import { AdminProductosComponent } from './pages/admin-productos/admin-productos
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductosService } from './servicios/productos.service';
 import { DataService } from './servicios/data.service';
+import { CompraComponent } from './pages/compra/compra.component';
 
 
 const configfire = {
@@ -49,6 +50,7 @@ firebase.initializeApp(configfire);
     NosotrosComponent,
     LoginComponent,
     AdminProductosComponent,
+    CompraComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,6 +18,9 @@ export class AdminProductosComponent implements OnInit {
   indexInput: number;
   productos: Productos[] = [];
   btnAgregar: boolean;
+  url: string;
+  barra: boolean = true;
+  imagen: string;
 
   constructor(private productoService: ProductosService,
               private router: Router,
@@ -33,20 +36,22 @@ export class AdminProductosComponent implements OnInit {
       }
     );
   }
+  onGuardarImagen(event){
+    this.imagen = event.target.files[0].name;
+    this.productoService.agregarImagen(event);
+    this.barra = false;
+  }
 
   onGuardarProducto(){
     if (this.tituloInput != null && this.descripcionInput != null && this.precioInput != null){
-      let producto1: Productos = new Productos(this.tituloInput, this.descripcionInput, this.precioInput);
+      let producto1: Productos = new Productos(this.tituloInput, this.descripcionInput, this.precioInput, this.productoService.getUrl());
       this.productoService.agregarProducto(producto1);
-    }
-    else{//si no tiene datos no hace nada se queda en el mismo lugar
-      return;
     }
 
   }
 
   onEditarProducto(i: number){
-    let producto1: Productos = new Productos(this.tituloInput, this.descripcionInput, this.precioInput);
+    let producto1: Productos = new Productos(this.tituloInput, this.descripcionInput, this.precioInput, this.productoService.getUrl());
     this.productoService.editarProducto( i, producto1 );
     this.btnAgregar = true;
   }

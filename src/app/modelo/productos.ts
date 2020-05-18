@@ -1,7 +1,4 @@
 export class Productos {
-    constructor(public titulo: string, public descripcion: string, public precio: number){}
+    constructor(public titulo: string, public descripcion: string, public precio: number, public url: string){}
 
-    toString(): string{
-        return this.titulo + ' ' + this.descripcion + ' ' + this.precio;
-    }
 }

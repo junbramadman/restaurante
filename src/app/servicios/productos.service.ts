@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 @Injectable()
 export class ProductosService {
   producto: Productos[] = [];
+  url: string;
 
   constructor(private dataService: DataService){}
 
@@ -21,6 +22,15 @@ export class ProductosService {
     this.dataService.guardarProducto(this.producto);
   }
 
+  agregarImagen = async (event) =>{
+    let call = await this.dataService.guardarImagen(event);
+    this.url = this.dataService.url;
+    console.log('desde productos: ' + this.url);
+  }
+  getUrl(){
+    return this.dataService.url;
+  }
+
 
   obtenerProductos(){
     return this.dataService.cargarProductos();
@@ -31,6 +41,7 @@ export class ProductosService {
     producto1.titulo = producto.titulo;
     producto1.descripcion = producto.descripcion;
     producto1.precio = producto.precio;
+    producto1.url = producto.url;
     this.dataService.editarProducto(index, producto1);
 
   }

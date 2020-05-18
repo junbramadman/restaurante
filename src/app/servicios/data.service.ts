@@ -4,14 +4,37 @@ import { Productos } from '../modelo/productos';
 import { ProductosService } from './productos.service';
 import { Subscriber } from 'rxjs';
 import Swal from 'sweetalert2';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import * as firebase from 'firebase';
 
 
 @Injectable()
 export class DataService {
     constructor(private httpClient: HttpClient) { }
+    uploader: number = 0;
+    url: any;
 
     cargarProductos(){
         return this.httpClient.get('https://restaurante-83087.firebaseio.com/productos.json');
+    }
+    guardarImagen(event){
+      let url2: any;
+      let archivo= event.target.files[0];
+      let storageRef = firebase.storage().ref('mis_fotos/' + archivo.name);
+      let subir= storageRef.put(archivo);
+      let response = subir.on('state_changed', snapshot => {
+        let porcentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        this.uploader = porcentage;
+      }, error => {
+        console.log(error);
+      },
+      () => {
+          subir.snapshot.ref.getDownloadURL().then((url) => {
+            this.url = url;
+            console.log('Url ya tiene el valor: ' + this.url);
+        });
+      });
     }
 
     guardarProducto(producto: Productos[]) {

@@ -1,10 +1,97 @@
+<div class="row">
+    <nav class="navbar navbar-expand-lg col-12">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a data-toggle="modal" data-target="#modalCarrito">
+                    <img src="../../../assets/img/carrito.jpg" style="width:60px; display:inline;">
+                </a>
+                Productos ({{cantidades}})
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Modal del carrito -->
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="modal fade" tabindex="-1" role="dialog" id="modalCarrito">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Carrito de compra</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" style="margin-top:20px;">
+                                <div class="col-3">
+                                    <b>Producto</b>
+                                </div>
+                                <div class="col-3">
+                                    <b>Precio</b>
+                                </div>
+                                <div class="col-3">
+                                    <b>Cantidad</b>
+                                </div>
+                                <div class="col-3">
+                                    <b>SubTotal</b>
+                                </div>
+                            </div>
+                            <!-- *ngFor="let producto of vect" -->
+                            <div class="row" style="margin-top:20px;" *ngFor="let product of carrito">
+                                <div class="col-3">
+                                    {{product.titulo}}
+                                </div>
+                                <div class="col-3">
+                                    {{product.precio}}
+                                </div>
+                                <div class="col-3">
+                                    {{product.cantidad}}
+                                </div>
+                                <div class="col-3">
+                                    {{product.cantidad * product.precio}}
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top:20px;">
+                                <div class="col-3">
+                                    TOTAL
+                                </div>
+                                <div class="col-3">
+
+                                </div>
+                                <div class="col-3">
+
+                                </div>
+                                <div class="col-3">
+                                    {{total}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn btn-primary">Finalizar Compra</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="ae-container-fluid rk-main">
     <section class="ae-container-fluid ae-container-fluid--inner rk-portfolio">
         <div class="ae-masonry ae-masonry-md-2 ae-masonry-xl-4">
-            <a href="portfolio-item.html" class="rk-item ae-masonry__item" *ngFor="let produc of productos"><img src="assets/img/project-2.jpg" alt="">
+            <a class="rk-item ae-masonry__item" *ngFor="let produc of productos; let i = index;">
+                <img src="{{produc.url}}" alt="">
                 <div class="item-meta">
                     <h2>{{produc.titulo}}</h2>
                     <p>{{produc.descripcion}}</p>
+                    <p><b>$ {{produc.precio}}</b></p>
+                    <p><button class="btn btn-primary" (click)="agregarCarrito(i); botonAgregar(i)" id="{{i}}">Agregar</button></p>
+                    <p><button class="btn btn-primary" hidden="true" (click)="agregarCantidad(i)" id="c{{i}}">Agregar</button></p>
                 </div>
             </a>
         </div>
