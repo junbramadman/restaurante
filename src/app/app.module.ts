@@ -24,6 +24,7 @@ import { ProductosService } from './servicios/productos.service';
 import { DataService } from './servicios/data.service';
 import { CompraComponent } from './pages/compra/compra.component';
 import { DespachoComponent } from './pages/despacho/despacho.component';
+import { PromocionesComponent } from './pages/promociones/promociones.component';
 
 
 const configfire = {
@@ -53,6 +54,7 @@ firebase.initializeApp(configfire);
     AdminProductosComponent,
     CompraComponent,
     DespachoComponent,
+    PromocionesComponent,
   ],
   imports: [
     BrowserModule,

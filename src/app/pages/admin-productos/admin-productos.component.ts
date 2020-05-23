@@ -18,9 +18,13 @@ export class AdminProductosComponent implements OnInit {
   indexInput: number;
   productos: Productos[] = [];
   btnAgregar: boolean;
+  btnPromo: boolean;
   url: string;
   barra: boolean = true;
   imagen: string;
+  tituloPromocionInput: string;
+  indexInputPromo: number;
+  promos: any[] = [];
 
   constructor(private productoService: ProductosService,
               private router: Router,
@@ -28,11 +32,19 @@ export class AdminProductosComponent implements OnInit {
 
   ngOnInit() {
     this.btnAgregar = true;
+    this.btnPromo = true;
     this.productoService.obtenerProductos()
     .subscribe(
       (producto: Productos[]) => {
         this.productos = producto;
         this.productoService.setProducto(this.productos);
+      }
+    );
+    this.productoService.obtenerPromos()
+    .subscribe(
+      (promos: any[]) => {
+        this.promos = promos;
+        this.productoService.setPromo(this.promos);
       }
     );
   }
@@ -65,10 +77,39 @@ export class AdminProductosComponent implements OnInit {
     this.descripcionInput = producto.descripcion;
     this.precioInput = producto.precio;
   }
+  funcionBotonesPromo(i: number){
+    this.btnPromo = false;
+
+    let promo = this.productoService.encontrarPromo(i);
+    this.indexInputPromo = i;
+    this.tituloPromocionInput = promo.titulo;
+  }
 
   onEliminarProducto(index: number){
     this.productoService.eliminarProducto(index);
   }
 
+  onCrearPromo(){
+    if (this.tituloPromocionInput != null){
+      let urlPromo = this.productoService.getUrl();
+      let arrayPromo = {
+        titulo: this.tituloPromocionInput,
+        url: urlPromo
+      };
+      this.productoService.agregarPromo(arrayPromo);
+    }
+  }
+
+  onEditarPromo(i){
+    let arrayPromo = {
+      titulo: this.tituloPromocionInput,
+      url: this.productoService.getUrl()
+    };
+    this.productoService.editarPromo( i, arrayPromo );
+    this.btnPromo = true;
+  }
+  onEliminarPromo(i){
+    this.productoService.eliminarPromo(i);
+  }
 
 }

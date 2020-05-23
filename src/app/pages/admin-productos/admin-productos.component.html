@@ -64,44 +64,70 @@
                 <div class="col-4" style="margin-top: 15px; margin-bottom: 20px;">
                     {{produc.descripcion}}
                 </div>
-                <div class="col-2" style="margin-top: 15px; margin-bottom: 20px;">
+                <div class="col-1" style="margin-top: 15px; margin-bottom: 20px;">
                     {{produc.precio}}
                 </div>
-                <div class="col-3">
-                    <button class="btn btn-warning" id="{{i}}" (click)="funcionBotones(i)">Editar</button>
+                <div class="col-4">
+                    <button class="btn btn-warning" id="{{i}}" (click)="funcionBotones(i)">Editar</button> &nbsp;
                     <button class="btn btn-danger" (click)="onEliminarProducto(i);">Eliminar</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-4">
-            <div class="box">
-                <h4>Subir o editar promociones</h4><br>
-                <div *ngIf="btnAgregar; then agregar else editar"></div>
-                <ng-template #agregar>
-                    <form class="item" #formularioAgregar="ngForm" (ngSubmit)="formularioAgregar.form.valid && onGuardarProducto() ; formularioAgregar.reset()">
-                        <input type="text" name="titulo" placeholder="Titulo" [(ngModel)]="tituloInput" required/>
-                        <textarea name="descripcion" placeholder="Descripcion" [(ngModel)]="descripcionInput" required cols="18" style="margin-bottom: 15px;">
-                        </textarea>
-                        <input type="number" name="precio" placeholder="Precio" [(ngModel)]="precioInput" required/>
-                        <br>
-                        <button type="submit" class="btn btn-primary">Agregar</button>
-                    </form>
-                </ng-template>
-                <ng-template #editar>
-                    <form class="item" #formularioEditar="ngForm" (ngSubmit)="formularioEditar.form.valid && onEditarProducto(indexInput); formularioEditar.reset();">
-                        <input type="number" name="indexInput" [(ngModel)]="indexInput" hidden>
-                        <input type="text" name="titulo" placeholder="Titulo" [(ngModel)]="tituloInput" required/>
-                        <textarea name="descripcion" placeholder="Descripcion" [(ngModel)]="descripcionInput" required cols="18" style="margin-bottom: 15px;">
-                        </textarea>
-                        <input type="number" name="precio" placeholder="Precio" [(ngModel)]="precioInput" required/>
-                        <br>
-                        <button type="submit" class="btn btn-primary">Editar</button>
-                        <button class="btn btn-danger" style="margin-left: 10px;" (click)="btnAgregar=true;formularioEditar.reset();">Cancelar</button>
-                    </form>
 
+    <hr style="border: 1px solid red; margin-bottom: 100px;">
+
+    <!-- Seccion de formulario y muestra de las promociones  -->
+
+    <div class="row">
+        <div class="col-5">
+            <div class="box">
+                <h4>Subir o editar promociones</h4><br><br>
+                <div *ngIf="btnPromo; then agregarPromocion else editarPromocion"></div>
+                <ng-template #agregarPromocion>
+                    <form class="item" #formularioAgregarPromo="ngForm" (ngSubmit)="formularioAgregarPromo.form.valid && onCrearPromo(); formularioAgregarPromo.reset();">
+                        <input type="number" name="indexInputPromo" [(ngModel)]="indexInputPromo" hidden>
+                        <input type="text" name="tituloPromocion" placeholder="Titulo" [(ngModel)]="tituloPromocionInput" required><br>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile" name="fotoPromocion" (change)="onGuardarImagen($event)">
+                            <label class="custom-file-label" for="customFile">Escoja el archivo</label>
+                            <label>{{imagen}}</label>
+                        </div> <br>
+                        <br>
+                        <button type="submit" class="btn btn-primary">Agregar Promo</button>
+                    </form>
                 </ng-template>
+                <ng-template #editarPromocion>
+                    <form class="item" #formularioEditarPromo="ngForm" (ngSubmit)="formularioEditarPromo.form.valid && onEditarPromo(indexInputPromo); formularioEditarPromo.reset();">
+                        <input type="number" name="indexInputPromo" [(ngModel)]="indexInputPromo" hidden>
+                        <input type="text" name="tituloPromocion" placeholder="Titulo" [(ngModel)]="tituloPromocionInput" required><br>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="customFile" name="fotoPromocion" (change)="onGuardarImagen($event)">
+                            <label class="custom-file-label" for="customFile">Escoja el archivo</label>
+                            <label>{{imagen}}</label>
+                        </div><br><br>
+                        <button type="submit" class="btn btn-primary">Editar Promo</button>
+                        <button class="btn btn-danger" style="margin-left: 10px;" (click)="btnPromo=true;formularioEditarPromo.reset();">Cancelar</button>
+                    </form>
+                </ng-template>
+            </div>
+        </div>
+
+        <div class="col-7">
+            <h4>Promociones subidas</h4><br>
+            <div class="row">
+                <div class="col-3">
+                    <h5>Titulo</h5>
+                </div>
+            </div>
+            <div class="row" *ngFor="let prom of promos; let i = index">
+                <div class="col-4" style="margin-top: 15px; margin-bottom: 20px;">
+                    <b>{{prom.titulo}}</b>
+                </div>
+                <div class="col-4" style="display: inline;">
+                    <button class="btn btn-warning" id="{{i}}" (click)="funcionBotonesPromo(i)">Editar</button> &nbsp;
+                    <button class="btn btn-danger" (click)="onEliminarPromo(i);">Eliminar</button>
+                </div>
             </div>
         </div>
     </div>

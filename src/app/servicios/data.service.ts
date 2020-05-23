@@ -74,6 +74,13 @@ export class DataService {
             );
     }
 
+    guardarAlEliminarPromo(promo){
+      this.httpClient.put('https://restaurante-83087.firebaseio.com/promo.json', promo)
+      .subscribe(
+          (response) => {}
+      );
+    }
+
 
     editarProducto(index:number, producto: Productos){
         let url: string;
@@ -100,6 +107,32 @@ export class DataService {
                 }
             );
     }
+
+    editarPromo(index: number, promo: any){
+      let url: string;
+      url = 'https://restaurante-83087.firebaseio.com' + '/promo/' + index + '.json';
+      this.httpClient.put( url, promo)
+          .subscribe(
+              (response) => {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Editado la promocion con exito',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              },
+              (error) => {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Error al editar la promocion',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              }
+          );
+  }
 
     eliminarProducto(index: number){
         let url: string;
@@ -153,6 +186,33 @@ export class DataService {
           );
   }
 
+  eliminarPromo(i){
+    let url: string;
+    url = 'https://restaurante-83087.firebaseio.com' + '/promo/' + i + '.json';
+    this.httpClient.delete( url)
+        .subscribe(
+            (response) => {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Promocion eliminada',
+                showConfirmButton: false,
+                timer: 1500
+              });
+            },
+            (error) => {
+              Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'Error al eliminar promocion',
+                showConfirmButton: false,
+                timer: 1500
+              });
+              console.log(error);
+            }
+        );
+  }
+
     enviarPedido(pedido){
       this.httpClient.put('https://restaurante-83087.firebaseio.com/pedidos.json', pedido)
       .subscribe(
@@ -194,6 +254,34 @@ export class DataService {
 
     cargarPersona(){
       return this.httpClient.get('https://restaurante-83087.firebaseio.com/persona.json');
+    }
+
+    guardarPromo(promo){
+      this.httpClient.put('https://restaurante-83087.firebaseio.com/promo.json', promo)
+      .subscribe(
+          (response) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Promocion creada con exito',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          },
+          (error) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Error al crear la promocion',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+      );
+    }
+
+    cargarPromos(){
+      return this.httpClient.get('https://restaurante-83087.firebaseio.com/promo.json');
     }
 
 }

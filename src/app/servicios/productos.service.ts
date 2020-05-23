@@ -9,6 +9,7 @@ export class ProductosService {
   pedido: any[] = [];
   persona: any[] = [];
   url: string;
+  promo: any[] = [];
 
   constructor(private dataService: DataService){
     this.dataService.cargarPedidos();
@@ -23,6 +24,10 @@ export class ProductosService {
   }
   setPedido(pedido: any[]){
     this.pedido = pedido;
+  }
+
+  setPromo(promo: any[]){
+    this.promo = promo;
   }
 
   agregarProducto(producto: Productos){
@@ -56,6 +61,13 @@ export class ProductosService {
     this.dataService.editarProducto(index, producto1);
 
   }
+  editarPromo(index: number, promo: any){
+    let promo1 = this.promo[index];
+    promo1.titulo = promo.titulo;
+    promo1.url = promo.url;
+    this.dataService.editarPromo(index, promo1);
+
+  }
   actualizarTabla(){
     if(this.producto != null) {
       this.dataService.guardarAlEliminar(this.producto);
@@ -71,6 +83,11 @@ export class ProductosService {
     this.producto.splice(index,1);
     this.dataService.eliminarProducto(index);
     this.actualizarTabla();
+  }
+  eliminarPromo(i){
+    this.promo.splice(i, 1);
+    this.dataService.eliminarPromo(i);
+    this.actualizarTablaPromo();
   }
 
   obtenerPedidos(){
@@ -95,5 +112,27 @@ export class ProductosService {
     if(this.pedido != null) {
       this.dataService.guardarAlEliminarPedido(this.pedido);
     }
+  }
+  actualizarTablaPromo(){
+    if(this.promo != null) {
+      this.dataService.guardarAlEliminarPromo(this.promo);
+    }
+  }
+
+  agregarPromo(promo){
+    if (this.promo == null){
+      this.promo = [];
+    }
+    this.promo.push(promo);
+    this.dataService.guardarPromo(this.promo);
+  }
+
+  obtenerPromos(){
+    return this.dataService.cargarPromos();
+  }
+
+  encontrarPromo(i){
+    let promo: any = this.promo[i];
+    return promo;
   }
 }

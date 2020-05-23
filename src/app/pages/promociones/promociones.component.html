@@ -1,0 +1,20 @@
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th>
+                    <h1>Promociones</h1>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prom of promos">
+                <td>{{prom.titulo}}</td>
+                <td><img src="{{prom.url}}" style="width: 200px;"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -8,11 +8,13 @@ import { AdminProductosComponent } from './pages/admin-productos/admin-productos
 import { LoginComponent } from './pages/login/login.component';
 import { CompraComponent } from './pages/compra/compra.component';
 import { DespachoComponent } from './pages/despacho/despacho.component';
+import { PromocionesComponent } from './pages/promociones/promociones.component';
 
 
 const routes: Routes = [
   {path: '', component: InicioComponent},
   {path: 'productos', component: ProductosComponent},
+  {path: 'promociones', component: PromocionesComponent},
   {path: 'nosotros', component: NosotrosComponent},
   {path: 'login', component: LoginComponent},
   {path: 'despacho', component: DespachoComponent},
