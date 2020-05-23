@@ -6,7 +6,7 @@
                 <li class="rk-menu__item">
                     <a routerLink="/" class="rk-menu__link">Inicio</a>
                 </li>
-                <li class="rk-menu__item">
+                <li class="rk-menu__item" *ngIf="!isAutenticado()">
                     <a routerLink="../nosotros" class="rk-menu__link">Sobre nosotros</a>
                 </li>
                 <li class="active rk-menu__item">
@@ -15,12 +15,15 @@
                 <li class="active rk-menu__item">
                     <a routerLink="../promociones" class="rk-menu__link">Promociones</a>
                 </li>
-                <li class="rk-menu__item">
+                <li class="rk-menu__item" *ngIf="!isAutenticado()">
                     <a routerLink="../contacto" class="rk-menu__link">Contacto</a>
                 </li>
                 <!--Este es el correcto para bloquear acceso <li *ngIf="isAutenticado()" class="rk-menu__item"> -->
-                <li class="rk-menu__item">
+                <li class="rk-menu__item" *ngIf="isAutenticado()">
                     <a class="rk-menu__link" routerLink="../admin-productos">Admin productos</a>
+                </li>
+                <li class="rk-menu__item" *ngIf="isAutenticado()">
+                    <a class="rk-menu__link" routerLink="../despacho">Despacho</a>
                 </li>
                 <li *ngIf="isAutenticado()" class="rk-menu__item">
                     <a class="rk-menu__link" href="#" (click)="salir()">Cerrar sesion</a>
