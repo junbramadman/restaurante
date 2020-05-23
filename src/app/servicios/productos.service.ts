@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 export class ProductosService {
   producto: Productos[] = [];
   pedido: any[] = [];
+  persona: any[] = [];
   url: string;
 
   constructor(private dataService: DataService){
@@ -17,6 +18,9 @@ export class ProductosService {
     this.producto = producto;
   }
 
+  setPersona(persona: any[]){
+    this.persona = persona;
+  }
   setPedido(pedido: any[]){
     this.pedido = pedido;
   }
@@ -72,11 +76,24 @@ export class ProductosService {
   obtenerPedidos(){
     return this.dataService.cargarPedidos();
   }
+  obtenerPersonas(){
+    return this.dataService.cargarPersona();
+  }
   enviarPedido(pedido: any){
     if (this.pedido == null){
       this.pedido = [];
     }
     this.pedido.push(pedido);
     this.dataService.enviarPedido(this.pedido);
+  }
+  Despachar(index:number){
+    this.pedido.splice(index, 1);
+    this.dataService.eliminarPedido(index);
+    this.actualizarTablaPedidos();
+  }
+  actualizarTablaPedidos(){
+    if(this.pedido != null) {
+      this.dataService.guardarAlEliminarPedido(this.pedido);
+    }
   }
 }

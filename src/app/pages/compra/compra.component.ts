@@ -9,6 +9,14 @@ export class CompraComponent implements OnInit {
   carrito = [];
   pedidoTotal = [];
   total = 0;
+  nombreInput: string;
+  apellidoInput: string;
+  cedulaInput: string;
+  direccionInput: string;
+  telefonoInput: string;
+  datosEnvio = {};
+  persona: any[];
+
   constructor(private carritoService: CarritoService, private productosService: ProductosService) { }
 
   ngOnInit(): void {
@@ -21,6 +29,13 @@ export class CompraComponent implements OnInit {
         this.productosService.setPedido(this.pedidoTotal);
       }
     );
+    this.productosService.obtenerPersonas()
+    .subscribe(
+      (persona: any) => {
+        this.persona = persona;
+        this.productosService.setPersona(this.persona);
+      }
+    );
   }
   calcularTotal(){
     for(let i = 0; i < this.carrito.length; i++){
@@ -31,8 +46,25 @@ export class CompraComponent implements OnInit {
 
   onRealizarPedido(){
     this.pedidoTotal = this.carrito;
-    this.pedidoTotal.push(this.total);
-    this.productosService.enviarPedido(this.pedidoTotal);
+    let titulo: string;
+    for(let i = 0; i < this.pedidoTotal.length ; i++){
+      if (!titulo){
+        titulo = this.pedidoTotal[i].titulo + ': ' + this.pedidoTotal[i].cantidad;
+      }else{
+        titulo = titulo + ', ' + this.pedidoTotal[i].titulo + ': ' + this.pedidoTotal[i].cantidad;
+      }
+    }
+    this.datosEnvio = {
+      productos: titulo,
+      nombre: this.nombreInput,
+      apellido: this.apellidoInput,
+      cedula: this.cedulaInput,
+      direccion: this.direccionInput,
+      telefono: this.telefonoInput,
+      total: this.total
+    };
+    this.productosService.enviarPedido(this.datosEnvio);
   }
+
 
 }

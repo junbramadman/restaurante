@@ -67,6 +67,12 @@ export class DataService {
                 (response) => {}
             );
     }
+    guardarAlEliminarPedido(pedido: any[]) {
+      this.httpClient.put('https://restaurante-83087.firebaseio.com/pedidos.json', pedido)
+            .subscribe(
+                (response) => {}
+            );
+    }
 
 
     editarProducto(index:number, producto: Productos){
@@ -120,6 +126,32 @@ export class DataService {
                 }
             );
     }
+    eliminarPedido(index: number){
+      let url: string;
+      url = 'https://restaurante-83087.firebaseio.com' + '/pedidos/' + index + '.json';
+      this.httpClient.delete( url)
+          .subscribe(
+              (response) => {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: 'Despachado con exito',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+              },
+              (error) => {
+                Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: 'Error al despachar pedido',
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                console.log(error);
+              }
+          );
+  }
 
     enviarPedido(pedido){
       this.httpClient.put('https://restaurante-83087.firebaseio.com/pedidos.json', pedido)
@@ -144,9 +176,24 @@ export class DataService {
           }
       );
     }
+    personaPedido(persona){
+      this.httpClient.put('https://restaurante-83087.firebaseio.com/persona.json', persona)
+      .subscribe(
+          (response) => {
+            console.log('Exito persona');
+          },
+          (error) => {
+            console.log('error persona' +  error);
+          }
+      );
+    }
 
     cargarPedidos(){
       return this.httpClient.get('https://restaurante-83087.firebaseio.com/pedidos.json');
+    }
+
+    cargarPersona(){
+      return this.httpClient.get('https://restaurante-83087.firebaseio.com/persona.json');
     }
 
 }
