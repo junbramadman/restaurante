@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { CompraComponent } from './pages/compra/compra.component';
 import { DespachoComponent } from './pages/despacho/despacho.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'promociones', component: PromocionesComponent},
   {path: 'nosotros', component: NosotrosComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'usuario', component: UsuarioComponent},
   {path: 'despacho', component: DespachoComponent},
   {path: 'compra', component: CompraComponent},
   {path: 'admin-productos', component: AdminProductosComponent},

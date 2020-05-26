@@ -18,12 +18,12 @@ export class DataService {
     cargarProductos(){
         return this.httpClient.get('https://restaurante-83087.firebaseio.com/productos.json');
     }
-    guardarImagen(event){
+     async guardarImagen(event){
       let url2: any;
       let archivo= event.target.files[0];
       let storageRef = firebase.storage().ref('mis_fotos/' + archivo.name);
       let subir= storageRef.put(archivo);
-      let response = subir.on('state_changed', snapshot => {
+      subir.on('state_changed', snapshot => {
         let porcentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         this.uploader = porcentage;
       }, error => {
@@ -33,6 +33,7 @@ export class DataService {
           subir.snapshot.ref.getDownloadURL().then((url) => {
             this.url = url;
             console.log('Url ya tiene el valor: ' + this.url);
+            return this.url;
         });
       });
     }
@@ -222,7 +223,7 @@ export class DataService {
               icon: 'success',
               title: 'Pedido creado con exito, un agente nuestro se pondra en contacto',
               showConfirmButton: false,
-              timer: 1500
+              timer: 4000
             });
           },
           (error) => {

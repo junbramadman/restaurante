@@ -3,26 +3,28 @@
         <h1 class="rk-logo"><a routerLink="/">Barriguita Llena Corazon Contento</a></h1>
         <nav class="rk-navigation">
             <ul class="rk-menu">
-                <li class="rk-menu__item">
+                <li class="rk-menu__item" *ngIf="!isAutenticado() || this.loginService.rol === true">
                     <a routerLink="/" class="rk-menu__link">Inicio</a>
                 </li>
                 <li class="rk-menu__item" *ngIf="!isAutenticado()">
                     <a routerLink="../nosotros" class="rk-menu__link">Sobre nosotros</a>
                 </li>
-                <li class="active rk-menu__item">
+                <li class="active rk-menu__item" *ngIf="!isAutenticado() || this.loginService.rol === true">
                     <a routerLink="../productos" class="rk-menu__link">Productos</a>
                 </li>
-                <li class="active rk-menu__item">
+                <li class="active rk-menu__item" *ngIf="!isAutenticado() || this.loginService.rol === true">
                     <a routerLink="../promociones" class="rk-menu__link">Promociones</a>
                 </li>
                 <li class="rk-menu__item" *ngIf="!isAutenticado()">
                     <a routerLink="../contacto" class="rk-menu__link">Contacto</a>
                 </li>
-                <!--Este es el correcto para bloquear acceso <li *ngIf="isAutenticado()" class="rk-menu__item"> -->
-                <li class="rk-menu__item" *ngIf="isAutenticado()">
+                <li class="rk-menu__item" *ngIf="this.loginService.rol === true">
                     <a class="rk-menu__link" routerLink="../admin-productos">Admin productos</a>
                 </li>
-                <li class="rk-menu__item" *ngIf="isAutenticado()">
+                <li class="rk-menu__item" *ngIf="this.loginService.rol === true">
+                    <a class="rk-menu__link" routerLink="../usuario">Admin usuarios</a>
+                </li>
+                <li class="rk-menu__item" *ngIf="this.loginService.rol === false && autenticacion === true">
                     <a class="rk-menu__link" routerLink="../despacho">Despacho</a>
                 </li>
                 <li *ngIf="isAutenticado()" class="rk-menu__item">

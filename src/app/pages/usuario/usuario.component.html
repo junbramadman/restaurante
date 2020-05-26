@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row" style="margin-bottom: 40px;">
+        <div class="col">
+            <h3>Registrar operario</h3>
+        </div>
+    </div>
+    <form #formularioRegistro="ngForm" (ngSubmit)="formularioRegistro.form.valid && registrarUsuario() ; formularioRegistro.reset() ">
+        <div class="form-group">
+            <input type="text" class="form-control" name="nombre" autocomplete="off" placeholder="Nombre" [(ngModel)]="nombreInput" required>
+            <input type="text" class="form-control" name="apellido" autocomplete="off" placeholder="Apellido" [(ngModel)]="apellidoInput" required>
+            <input type="text" class="form-control" name="cedula" autocomplete="off" [(ngModel)]="cedulaInput" placeholder="Cedula" required>
+            <input type="text" class="form-control" name="direccion" autocomplete="off" placeholder="Dirección" [(ngModel)]="direccionInput" required>
+            <input type="text" class="form-control" name="telefono" autocomplete="off" placeholder="Teléfono" [(ngModel)]="telefonoInput" required>
+            <input type="text" class="form-control" name="email" autocomplete="off" placeholder="Correo" [(ngModel)]="correoInput" required>
+            <input type="password" class="form-control" name="password" autocomplete="off" placeholder="Contraseña" [(ngModel)]="passwordInput" required>
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="usuarioAdmin" name="tipoUsuario" [value]="true" [(ngModel)]="tipoUsuarioInput" />
+                <label class="custom-control-label" for="usuarioAdmin">Usuario Administrador</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" id="usuarioOperario" name="tipoUsuario" [value]="false" checked="checked" [(ngModel)]="tipoUsuarioInput" />
+                <label class="custom-control-label" for="usuarioOperario">Usuario Operario</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+
+    <hr style="border: 1px solid red; margin-bottom: 100px;">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <h1>Usuarios Operarios</h1>
+            </div>
+        </div>
+    </div><br>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Cedula</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Correo</th>
+                <th scope="col">tipo de usuario</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuario; let i = index">
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.apellido}}</td>
+                <td>{{usuario.cedula}}</td>
+                <td>{{usuario.direccion}}</td>
+                <td>{{usuario.telefono}}</td>
+                <td>{{usuario.correo}}</td>
+                <td *ngIf="usuario.isAdmin === true">Administrador</td>
+                <td *ngIf="usuario.isAdmin === false">Operario</td>
+                <td><button class="btn btn-outline-primary" (click)="onEliminar(i)">Eliminar</button></td>
+            </tr>
+            <tr *ngIf="!usuario" class="justify-content-center">
+                <td>No hay usuarios en la base de datos</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

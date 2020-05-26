@@ -23,7 +23,7 @@
             <td>{{pedido.nombre}} {{pedido.apellido}}</td>
             <td>{{pedido.direccion}}</td>
             <td>{{pedido.telefono}}</td>
-            <td>{{pedido.total}}</td>
+            <td>$ {{pedido.total}}</td>
             <td><button class="btn btn-outline-primary" (click)="onDespachar(i)">Despachar</button></td>
         </tr>
         <tr *ngIf="!pedidos" class="justify-content-center">

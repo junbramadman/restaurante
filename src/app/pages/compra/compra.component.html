@@ -40,7 +40,7 @@
           </button>
             </div>
             <div class="modal-body">
-                <form #formularioCompra="ngForm" (ngSubmit)="formularioCompra.form.valid && onRealizarPedido()">
+                <form #formularioCompra="ngForm" (ngSubmit)="formularioCompra.form.valid">
                     <div class="form-group">
                         <input type="text" class="form-control" name="nombre" autocomplete="off" placeholder="Nombre" [(ngModel)]="nombreInput" required>
                         <input type="text" class="form-control" name="apellido" autocomplete="off" placeholder="Apellido" [(ngModel)]="apellidoInput" required>
@@ -48,7 +48,7 @@
                         <input type="text" class="form-control" name="direccion" autocomplete="off" placeholder="Dirección de despacho" [(ngModel)]="direccionInput" required>
                         <input type="text" class="form-control" name="telefono" autocomplete="off" placeholder="Teléfono" [(ngModel)]="telefonoInput" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Comprar</button>
+                    <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="onRealizarPedido()">Comprar</button>
                 </form>
             </div>
         </div>

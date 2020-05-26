@@ -25,6 +25,7 @@ import { DataService } from './servicios/data.service';
 import { CompraComponent } from './pages/compra/compra.component';
 import { DespachoComponent } from './pages/despacho/despacho.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 
 const configfire = {
@@ -55,6 +56,7 @@ firebase.initializeApp(configfire);
     CompraComponent,
     DespachoComponent,
     PromocionesComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,

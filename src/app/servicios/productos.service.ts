@@ -38,10 +38,9 @@ export class ProductosService {
     this.dataService.guardarProducto(this.producto);
   }
 
-  agregarImagen = async (event) =>{
+  async agregarImagen(event){
     let call = await this.dataService.guardarImagen(event);
-    this.url = this.dataService.url;
-    console.log('desde productos: ' + this.url);
+    this.url = await this.dataService.url;
   }
   getUrl(){
     return this.dataService.url;

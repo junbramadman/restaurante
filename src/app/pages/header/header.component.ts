@@ -7,8 +7,8 @@ import { LoginService } from '../../servicios/login.service';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private loginService: LoginService) { }
+  autenticacion: boolean;
+  constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {
   }
@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
     this.loginService.logout();
   }
   isAutenticado(){
+    this.autenticacion = this.loginService.autenticado;
     return this.loginService.isAutenticado();
   }
 

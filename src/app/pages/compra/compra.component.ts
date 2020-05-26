@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoService } from 'src/app/servicios/carrito.service';
 import { ProductosService } from '../../servicios/productos.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-compra',
   templateUrl: './compra.component.html',
@@ -17,7 +18,7 @@ export class CompraComponent implements OnInit {
   datosEnvio = {};
   persona: any[];
 
-  constructor(private carritoService: CarritoService, private productosService: ProductosService) { }
+  constructor(private carritoService: CarritoService, private productosService: ProductosService, private router: Router) { }
 
   ngOnInit(): void {
     this.carrito = this.carritoService.numeroProductos;
@@ -64,6 +65,7 @@ export class CompraComponent implements OnInit {
       total: this.total
     };
     this.productosService.enviarPedido(this.datosEnvio);
+    this.router.navigate(['/']);
   }
 
 
