@@ -55,30 +55,32 @@ export class LoginService {
   }
 
   agregarUsuario(usuario: any[], password){
-    firebase.auth().createUserWithEmailAndPassword(usuario[usuario.length - 1].correo, password).catch( function (error){
+    firebase.auth().createUserWithEmailAndPassword(usuario[usuario.length - 1].correo, password).then
+    (() => {
+      this.http.put('https://restaurante-83087.firebaseio.com/usuarios.json', usuario)
+      .subscribe(
+          (response) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'creado con exito',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          },
+          (error) => {
+            Swal.fire({
+              position: 'center',
+              icon: 'error',
+              title: 'Erro al crear el producto con exito',
+              showConfirmButton: false,
+              timer: 1500
+            });
+          }
+      );
+    }, function (error){
       console.log(error);
     });
-    this.http.put('https://restaurante-83087.firebaseio.com/usuarios.json', usuario)
-    .subscribe(
-        (response) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'creado con exito',
-            showConfirmButton: false,
-            timer: 1500
-          });
-        },
-        (error) => {
-          Swal.fire({
-            position: 'center',
-            icon: 'error',
-            title: 'Erro al crear el producto con exito',
-            showConfirmButton: false,
-            timer: 1500
-          });
-        }
-    );
   }
   cargarUsuarios(){
     return this.http.get('https://restaurante-83087.firebaseio.com/usuarios.json');
